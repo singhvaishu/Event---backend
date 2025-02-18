@@ -26,7 +26,18 @@ io.sockets.setMaxListeners(20);
 app.use(express.json());
 app.use(cors({ origin: ["http://localhost:3000", "http://localhost:5173"] }));
 
+<<<<<<< HEAD
 
+=======
+// MongoDB Connection
+// mongoose
+//     .connect(process.env.MONGO_URI, {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//     })
+//     .then(() => console.log("✅ MongoDB connected"))
+//     .catch((err) => console.log("❌ MongoDB connection error:", err));
+>>>>>>> fc814d699540ecc15a7d3f1bcbdeffe6adec06f0
 
 // Attach Socket.IO to requests
 app.use((req, res, next) => {
