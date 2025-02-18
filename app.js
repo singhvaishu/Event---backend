@@ -2,13 +2,14 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
+const connectDB = require("./config/db")
 const cors = require("cors");
 const http = require("http");
 const { Server } = require("socket.io");
 require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const eventRoutes = require("./routes/eventRoutes");
-
+connectDB();
 const app = express();
 const server = http.createServer(app);
 
@@ -25,14 +26,7 @@ io.sockets.setMaxListeners(20);
 app.use(express.json());
 app.use(cors({ origin: ["http://localhost:3000", "http://localhost:5173"] }));
 
-// MongoDB Connection
-mongoose
-    .connect(process.env.MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    .then(() => console.log("✅ MongoDB connected"))
-    .catch((err) => console.log("❌ MongoDB connection error:", err));
+
 
 // Attach Socket.IO to requests
 app.use((req, res, next) => {
